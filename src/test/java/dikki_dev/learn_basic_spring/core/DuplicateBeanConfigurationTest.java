@@ -43,4 +43,12 @@ public class DuplicateBeanConfigurationTest {
             Foo foo3 = context.getBean("foo3", Foo.class);
         });
     }
+
+    @Test
+    void testGetPrimaryBean(){
+        ApplicationContext context = new AnnotationConfigApplicationContext(DuplicateBeanConfiguration.class);
+
+        // Get Primary / Default Bean setelah menambahkan "@Primary" Annotation di salah satu Bean
+        Foo primaryFooBean = context.getBean(Foo.class);
+    }
 }
