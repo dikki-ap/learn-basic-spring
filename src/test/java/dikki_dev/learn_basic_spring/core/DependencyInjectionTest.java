@@ -20,12 +20,15 @@ public class DependencyInjectionTest {
     @Test
     void testWithDI(){
 
+        ///  [TEST] Jika hanya ada 1 Bean dengan Tipe Data yang sama
         // Tidak perlu memikirkan dari object mana, hanya perlu mengambil dari Bean yang tersedia
-        Foo foo = applicationContext.getBean(Foo.class);
+        Foo foo = applicationContext.getBean(Foo.class); // Akan mengambil Primary Bean
+        Foo foo2 = applicationContext.getBean("fooSecond", Foo.class);
         Bar bar = applicationContext.getBean(Bar.class);
         FooBar fooBar = applicationContext.getBean(FooBar.class);
 
-        Assertions.assertSame(foo, fooBar.getFoo());
+//        Assertions.assertSame(foo, fooBar.getFoo()); // Akan mengambil Specific Bean "fooSecond" karena menggunakan @Qualifier
+        Assertions.assertSame(foo2, fooBar.getFoo());
         Assertions.assertSame(bar, fooBar.getBar());
     }
 
