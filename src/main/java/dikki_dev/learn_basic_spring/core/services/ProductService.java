@@ -1,5 +1,7 @@
 package dikki_dev.learn_basic_spring.core.services;
 
+import dikki_dev.learn_basic_spring.core.repositories.ProductRepository;
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 /*
@@ -10,4 +12,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ProductService {
+    @Getter
+    private ProductRepository productRepository;
+
+    // Constructor-Based Dependency Injection
+    // Spring akan membaca Constructor ini, DENGAN CATATAN HANYA CONSTRUCTOR DENGAN 1 PARAMETER SAJA
+    public ProductService(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
 }

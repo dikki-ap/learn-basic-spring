@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 // Membaca semua "@Component" Annotation yang ada di "package" dan "subpackage" nya
 @ComponentScan(basePackages = {
-        "dikki_dev.learn_basic_spring.core.services"
+        "dikki_dev.learn_basic_spring.core.services",
+        "dikki_dev.learn_basic_spring.core.repositories",
 })
 public class ComponentConfiguration {
 }
