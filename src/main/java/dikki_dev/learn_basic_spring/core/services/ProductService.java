@@ -2,6 +2,7 @@ package dikki_dev.learn_basic_spring.core.services;
 
 import dikki_dev.learn_basic_spring.core.repositories.ProductRepository;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /*
@@ -17,7 +18,13 @@ public class ProductService {
 
     // Constructor-Based Dependency Injection
     // Spring akan membaca Constructor ini, DENGAN CATATAN HANYA CONSTRUCTOR DENGAN 1 PARAMETER SAJA
+    @Autowired // Annotation ini digunakan untuk memberitahukan Spring agar menggunakan Constructor ini secara Default meskipun ada lebih dari 1 Constructor
     public ProductService(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
+
+    // Constructor Ke-2
+    public ProductService(ProductRepository productRepository, String name){
         this.productRepository = productRepository;
     }
 }
