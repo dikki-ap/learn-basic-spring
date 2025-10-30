@@ -51,4 +51,17 @@ public class DuplicateBeanConfigurationTest {
         // Get Primary / Default Bean setelah menambahkan "@Primary" Annotation di salah satu Bean
         Foo primaryFooBean = context.getBean(Foo.class);
     }
+
+    @Test
+    void testGetChangedBeanName(){
+        ApplicationContext context = new AnnotationConfigApplicationContext(DuplicateBeanConfiguration.class);
+
+        // Menggunakan "Bean Name" dari "value" yang ada di @Bean Annotation
+        Foo foo1 = context.getBean(Foo.class);
+        Foo fooFirst = context.getBean("fooFirst", Foo.class);
+        Foo fooSecond = context.getBean("fooSecond", Foo.class);
+
+        Assertions.assertSame(foo1, fooFirst); // Harusnya ini sama karena 1 Bean yang sama dan bersifat Singleton
+        Assertions.assertNotSame(fooFirst, fooSecond); // Harusnya ini tidak sama karena sudah beda Bean
+    }
 }
