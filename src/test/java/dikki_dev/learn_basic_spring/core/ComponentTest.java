@@ -1,8 +1,10 @@
 package dikki_dev.learn_basic_spring.core;
 
 import dikki_dev.learn_basic_spring.core.repositories.CategoryRepository;
+import dikki_dev.learn_basic_spring.core.repositories.CustomerRepository;
 import dikki_dev.learn_basic_spring.core.repositories.ProductRepository;
 import dikki_dev.learn_basic_spring.core.services.CategoryService;
+import dikki_dev.learn_basic_spring.core.services.CustomerService;
 import dikki_dev.learn_basic_spring.core.services.ProductService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,5 +45,14 @@ public class ComponentTest {
 
         // Harusnya objectnya sama karena menggunakan "Setter-Based" Dependency Injection
         Assertions.assertSame(categoryService.getCategoryRepository(), categoryRepository);
+    }
+
+    @Test
+    void testFieldBasedDependencyInjection(){
+        CustomerService customerService = applicationContext.getBean(CustomerService.class);
+        CustomerRepository customerRepository = applicationContext.getBean(CustomerRepository.class);
+
+        // Harusnya objectnya sama karena menggunakan "Field-Based" Dependency Injection
+        Assertions.assertSame(customerService.getCustomerRepository(), customerRepository);
     }
 }
