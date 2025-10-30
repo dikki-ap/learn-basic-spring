@@ -1,4 +1,4 @@
-package dikki_dev.learn_basic_spring.core;
+package dikki_dev.learn_basic_spring.core.configurations.subconfigurations;
 
 import dikki_dev.learn_basic_spring.core.data.Bar;
 import org.springframework.context.annotation.Bean;
