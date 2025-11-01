@@ -11,24 +11,22 @@ import java.util.UUID;
 
 @Slf4j
 @Component
-public class IdGeneratorBeanPostProcessor implements BeanPostProcessor, Ordered {
-
-    // Ada banyak method dari "BeanPostProcessor" salah satunya adalah "postProcessAfterInitialization()"
-    // Method ini berfungsi untuk melakukan suatu hal setelah initiate Bean oleh Spring
+public class PrefixGeneratorBeanPostProcessor implements BeanPostProcessor, Ordered {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        log.info("Post Processor after Initializing Bean {}", beanName);
+        log.info("Prefix Generator Post Processor after Initializing Bean {}", beanName);
         if(bean instanceof IdAware){
-            log.info("Set Id for Bean {}", beanName);
+            log.info("Set Prefix Id for Bean {}", beanName);
             IdAware idAware = (IdAware) bean;
-            idAware.setId(UUID.randomUUID().toString());
+            idAware.setId("Prefix-" + idAware.getId());
         }
         return bean;
     }
 
-    // IdGeneratorBeanPostProcessor ini akan terlebih dahulu dieksekusi oleh Spring karena memiliki angka lebih kecil dariapda BeanPostProcessor lainnya
+
+    // PrefixGenerator ini akan dieksekusi setelah IdGenerator
     @Override
     public int getOrder() {
-        return 1;
+        return 2;
     }
 }

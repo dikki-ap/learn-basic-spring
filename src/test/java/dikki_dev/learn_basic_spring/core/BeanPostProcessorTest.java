@@ -26,4 +26,11 @@ public class BeanPostProcessorTest {
         // UUID ini berasal dari BeanPostProcessor
         Assertions.assertNotNull(car.getId());
     }
+
+    @Test
+    void testPrefixGenerator(){
+        Car car = applicationContext.getBean(Car.class);
+        Assertions.assertNotNull(car.getId());
+        Assertions.assertTrue(car.getId().startsWith("Prefix-"));
+    }
 }
