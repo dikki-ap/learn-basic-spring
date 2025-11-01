@@ -1,6 +1,7 @@
 package dikki_dev.learn_basic_spring.core.application;
 
 import dikki_dev.learn_basic_spring.core.data.Foo;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -23,8 +24,22 @@ public class FooApplication {
     }
 
 
+//    public static void main(String[] args) {
+//        ConfigurableApplicationContext applicationContext = SpringApplication.run(FooApplication.class, args);
+//
+//        Foo foo = applicationContext.getBean(Foo.class);
+//        System.out.println(foo);
+//    }
+
     public static void main(String[] args) {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(FooApplication.class, args);
+        SpringApplication springApplication = new SpringApplication(FooApplication.class);
+
+        // Melakukan sesuatu sebelum SpringBootApplication dimulai
+        // Bisa menggunakan "StringApplicationBuilder"
+        // springApplication.setBanner(Banner.Mode.OFF); // Salah satunya seperti ini
+
+
+        ConfigurableApplicationContext applicationContext = springApplication.run(args);
 
         Foo foo = applicationContext.getBean(Foo.class);
         System.out.println(foo);
