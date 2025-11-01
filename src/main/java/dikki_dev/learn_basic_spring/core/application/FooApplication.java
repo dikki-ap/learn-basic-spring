@@ -1,11 +1,14 @@
 package dikki_dev.learn_basic_spring.core.application;
 
 import dikki_dev.learn_basic_spring.core.data.Foo;
+import dikki_dev.learn_basic_spring.core.listeners.ApplicationStartingListener;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 /*
    "@SpringBootApplication" Annotation adalah annotation yang berfungsi untuk menandakan di mana aplikasi Spring boot kita
@@ -38,6 +41,9 @@ public class FooApplication {
         // Bisa menggunakan "StringApplicationBuilder"
         // springApplication.setBanner(Banner.Mode.OFF); // Salah satunya seperti ini
 
+        // Menggunakan salah satu "Spring Application Event"
+        // Ada banyak contohnya, bisa cek dokumentasi
+        springApplication.setListeners(List.of(new ApplicationStartingListener()));
 
         ConfigurableApplicationContext applicationContext = springApplication.run(args);
 
